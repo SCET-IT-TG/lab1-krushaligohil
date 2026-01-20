@@ -1,0 +1,105 @@
+// Select database (Allowed way)
+db = db.getSiblingDB("examDB");
+
+// ----------------------------
+// Exercise 1: Database & Collection Creation
+// ----------------------------
+
+db.students.insertOne({
+  name: "Siddharth Kulkarni",
+  department: "ECE",
+  semester: 3,
+  mobile: 8111111111
+});
+
+db.students.insertOne({
+  name: "Nisha Bansal",
+  department: "Civil",
+  semester: 7,
+  mobile: 8222222222
+});
+
+// ----------------------------
+// Exercise 2: Insert Document with Multiple Fields
+// ----------------------------
+
+db.students.insertOne({
+  name: "Aditya Nair",
+  department: "Mechanical",
+  semester: 5,
+  mobile: 8333333333
+});
+
+// ----------------------------
+// Exercise 3: Array of Simple Values
+// ----------------------------
+
+db.subjects.insertOne({
+  course_name: "B.Tech ECE",
+  subject_list: ["Signals", "VLSI", "Networks", "Microcontrollers"]
+});
+
+// ----------------------------
+// Exercise 4: Array of Objects
+// ----------------------------
+
+db.faculty.insertOne({
+  department: "Electronics Engineering",
+  teachers: [
+    { name: "Dr. Ramesh Pillai", experience: 18 },
+    { name: "Prof. Sunita Menon", experience: 11 }
+  ]
+});
+
+// ----------------------------
+// Exercise 5: Explicit Primary Key using ObjectId()
+// ----------------------------
+
+db.students.insertOne({
+  _id: ObjectId(),
+  name: "Kritika Arora",
+  department: "ECE",
+  semester: 4,
+  mobile: 8444444444
+});
+
+// ----------------------------
+// Exercise 6: Duplicate Primary Key Observation
+// ----------------------------
+
+// First insert (will succeed)
+db.students.insertOne({
+  _id: ObjectId("65def123456789abcdef0002"),
+  name: "Ravi Choudhary",
+  department: "Automobile",
+  semester: 2,
+  mobile: 8555555555
+});
+
+// Second insert with same _id (will FAIL — expected)
+db.students.insertOne({
+  _id: ObjectId("65def123456789abcdef0002"),
+  name: "Pallavi Deshpande",
+  department: "Automobile",
+  semester: 2,
+  mobile: 8666666666
+});
+
+// ----------------------------
+// Exercise 7: Multiple Inserts using insert()
+// ----------------------------
+
+db.subjects.insert({
+  course_name: "BBA",
+  subject_list: ["Management", "Finance", "Marketing"]
+});
+
+db.subjects.insert({
+  course_name: "MBA",
+  subject_list: ["Strategy", "Operations", "HR"]
+});
+
+db.subjects.insert({
+  course_name: "B.Com",
+  subject_list: ["Accounting", "Economics", "Taxation"]
+});
